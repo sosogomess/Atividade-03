@@ -5,24 +5,32 @@ class AnotacaoModel {
     return await prisma.nota.findMany();
   };
 
-  create = async (titulo, conteudo) => {
+  getById = async (id) => {
+    return await prisma.note.findUnique({
+      where: { id },
+    });
+  };
+  
+  create = async (titulo, conteudo, favorita, cor) => {
     return await prisma.nota.create({
       data: {
         titulo,
-        conteudo
+        conteudo,
+        favorita,
+        cor
       },
     });
   };
 
-  update = async (id, titulo, favorita, cor, atualizadaEm) => {
+  update = async (id, titulo, conteudo, favorita, cor) => {
     try {
       const anotacao = await prisma.nota.update({
         where: { id },
         data: {
-          favorita: favorita !== undefined ? favorita: true,
+          favorita,
           titulo,
-          cor,
-          atualizadaEm: atualizadaEm || new Date()
+          conteudo,
+          cor
         },
       });
       return anotacao;
