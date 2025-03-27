@@ -12,14 +12,14 @@ class AnotacaoController {
   };
 
   create = async (req, res) => {
-    const { titulo, conteudo } = req.body;
+    const { titulo, conteudo, favorita, cor} = req.body;
 
     try {
-      if (!titulo || !conteudo) {
-        return res.status(400).json({ erro: "Titulo e conteudo são obrigatórios" });
+      if (!titulo || !conteudo || !favorita || !cor) {
+        return res.status(400).json({ erro: "Todos os campos são obrigatórios" });
       }
 
-      const novaAnotacao = await anotacaoModel.create(titulo);
+      const novaAnotacao = await anotacaoModel.create(titulo, conteudo, favorita, cor);
       res.status(201).json(novaAnotacao);
     } catch (error) {
       console.log(error);
