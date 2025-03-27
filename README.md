@@ -13,11 +13,10 @@
 ```
 DATABASE_URL="file:./prisma/dev.db
 ```
-5. para aplicar as migrações:
+5. para aplicar as migrações comando:
 
 ```
-
- Comando npx prisma migrate dev --name init
+ npx prisma migrate dev --name init
  ```
 6. Para iniciar o servidor:
 
@@ -27,5 +26,57 @@ npm run dev
 ```
 
 ### Métodos utilizados:
-1. 
+
+#### 1. **GET /**  
+   Retorna todas as anotações cadastradas.
+
+   **Exemplo de Resposta:**
+   ```json
+   [
+     {
+       "id": 1,
+       "titulo": "Minha primeira anotação",
+       "conteudo": "Conteúdo da anotação",
+       "criadaEm": "2025-03-27T12:00:00.000Z",
+       "atualizadaEm": "2025-03-27T12:00:00.000Z"
+     }
+   ]
+   ```
+#### 2. **POST /**  
+   Cria uma nova anotação.
+
+   **Corpo da Requisição:**
+   ```json
+   {
+  "titulo": "Listar Maquiagem",
+   "conteudo": "Rimel, Gloss, Corretivo, blush",
+   "favorita": true,
+    "cor": "Rosa"
+      
+}
+   ```
+**Exemplo de código**
+```json
+{
+  "id": 2,
+  "titulo": "Listar Maquiagem",
+  "conteudo": "Rimel, Gloss, Corretivo, blush",
+  "favorita": false,
+  "cor": "Rosa",
+  "criadaEm": "2025-03-27T18:42:24.789Z",
+  "atualizadaEm": "2025-03-27T18:42:24.789Z"
+}
+ ```
+ #### 4. **DELETE /:id**  
+   Remove uma anotação existente.
+
+   **Parâmetros:**
+   - `id` (obrigatório): ID da anotação a ser deletada.
+
+   **Exemplo de Resposta:**
+   ```json
+   {
+       "mensagem": "Anotação deletada com sucesso"
+   }
+   ```
 
